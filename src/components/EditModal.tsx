@@ -52,19 +52,19 @@ const EditModal: React.FC<EditModalProps> = ({
               maxLength={3}
             />
             <View style={styles.scoreAdjustmentContainer}>
-              <TouchableOpacity style={styles.button} onPress={() => handleScoreChange(score + 1)}>
-                <Text style={styles.buttonText}>+1</Text>
-              </TouchableOpacity>
               <TouchableOpacity style={styles.button} onPress={() => handleScoreChange(score - 1)}>
                 <Text style={styles.buttonText}>-1</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => handleScoreChange(score + 1)}>
+                <Text style={styles.buttonText}>+1</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.scoreAdjustmentContainer}>
-              <TouchableOpacity style={styles.button} onPress={() => handleScoreChange(score + 3)}>
-                <Text style={styles.buttonText}>+3</Text>
-              </TouchableOpacity>
               <TouchableOpacity style={styles.button} onPress={() => handleScoreChange(score - 3)}>
                 <Text style={styles.buttonText}>-3</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => handleScoreChange(score + 3)}>
+                <Text style={styles.buttonText}>+3</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.buttonsContainer}>

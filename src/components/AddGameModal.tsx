@@ -48,51 +48,87 @@ const AddGameModal: React.FC<{ isVisible: boolean; onClose: () => void, onGameAd
 
   return (
     <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
-      <View style={styles.modalView}>
-        <TextInput placeholder="Game Name (Optional)" value={gameName} onChangeText={setGameName} style={styles.input} />
-        {playerInputs.map((input, index) => (
-          <View key={input.id} style={styles.playerInputContainer}>
-            <TextInput
-              placeholder={`Player ${index + 1} Name`}
-              value={input.name}
-              onChangeText={text =>
-                setPlayerInputs(current =>
-                  current.map(i => (i.id === input.id ? { ...i, name: text } : i))
-                )
-              }
-              style={styles.input}
-            />
-            <TouchableOpacity onPress={() => removePlayerInput(input.id)} style={styles.removeButton}>
-              <Text>Remove</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
-        <Button title="Add Another Player" onPress={addPlayerInput} />
-        <Button title="Add Game" onPress={handleAddGame} />
-        <Button title="Cancel" onPress={onClose} />
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <TextInput placeholder="Game Name (Optional)" placeholderTextColor="#ccc" value={gameName} onChangeText={setGameName} style={styles.input} />
+          {playerInputs.map((input, index) => (
+            <View key={input.id} style={styles.playerInputContainer}>
+              <TextInput
+                placeholder={`Player ${index + 1} Name`}
+                placeholderTextColor="#ccc"
+                value={input.name}
+                onChangeText={text =>
+                  setPlayerInputs(current =>
+                    current.map(i => (i.id === input.id ? { ...i, name: text } : i))
+                  )
+                }
+                style={[styles.input, { flex: 1, marginRight: 10 }]}
+              />
+              <TouchableOpacity onPress={() => removePlayerInput(input.id)} style={styles.removeButton}>
+                <Text style={styles.buttonText}>X</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+          <TouchableOpacity style={styles.button} onPress={addPlayerInput}>
+            <Text style={styles.buttonText}>Add Another Player</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={handleAddGame}>
+            <Text style={styles.buttonText}>Add Game</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={onClose}>
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.7)',
+  },
   modalView: {
-    marginTop: 50,
+    margin: 20,
+    backgroundColor: '#222',
+    borderRadius: 20,
     padding: 20,
+    alignItems: 'center',
+    width: '90%',
   },
   input: {
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#555',
+    backgroundColor: '#333',
+    color: '#fff',
     padding: 10,
     marginBottom: 10,
   },
   playerInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    width: '100%',
   },
   removeButton: {
-    marginLeft: 10,
+    backgroundColor: '#D32F2F',
+    padding: 5,
+    borderRadius: 5,
   },
+  button: {
+    backgroundColor: '#1E88E5',
+    padding: 10,
+    borderRadius: 20,
+    marginTop: 10,
+    width: '100%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+  },
+
 });
 
 export default AddGameModal;
