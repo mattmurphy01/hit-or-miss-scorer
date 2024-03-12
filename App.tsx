@@ -10,12 +10,26 @@ const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='GameScores' >
-        <Stack.Screen name='GameScores' component={GameScoresScreen} options={{ title: 'Game Scores' }} />
-        <Stack.Screen name="GameScreen" component={GameScreen} options={{ title: 'Game Details' }} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <StatusBar style="light" />
+      <NavigationContainer>
+        <Stack.Navigator 
+          initialRouteName='GameScores'
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#121212',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          <Stack.Screen name='GameScores' component={GameScoresScreen} options={{ title: 'Game Scores' }} />
+          <Stack.Screen name="GameScreen" component={GameScreen} options={{ title: 'Game Details' }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 

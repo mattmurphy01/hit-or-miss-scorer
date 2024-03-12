@@ -32,7 +32,7 @@ const RoundModal: React.FC<RoundModalProps> = ({
       onRequestClose={onClose}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text>{title}</Text>
+          <Text style={styles.modalTitle}>{title}</Text>
           <FlatList 
             data={players}
             keyExtractor={item => item.id}
@@ -40,8 +40,8 @@ const RoundModal: React.FC<RoundModalProps> = ({
               <TouchableOpacity 
                 style={styles.playerItem} 
                 onPress={() => togglePlayerSelection(item.id)}
-                activeOpacity={0.6}>
-                <Text>{item.name}</Text>
+                activeOpacity={0.7}>
+                <Text style={styles.playerName}>{item.name}</Text>
                 <CheckBox
                   checked={selectedPlayers[item.id]}
                   onPress={() => togglePlayerSelection(item.id)}
@@ -49,8 +49,14 @@ const RoundModal: React.FC<RoundModalProps> = ({
               </TouchableOpacity>
             )}
           />
-          <Button title='Confirm' onPress={confirmSelections} />
-          <Button title='Cancel' onPress={onClose} />
+          <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={confirmSelections}>
+              <Text style={styles.buttonText}>Confirm</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={onClose}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>
@@ -64,11 +70,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    backgroundColor: 'rgba(0,0,0,0.5)', // Semi-transparent background
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#222222', // Dark background for the modal
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -78,14 +84,41 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: 4,
     elevation: 5,
+    width: '90%', // Ensuring modal width is responsive
+  },
+  modalTitle: {
+    marginBottom: 15,
+    textAlign: 'center',
+    color: '#ffffff', // Text color for dark theme
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   playerItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    marginVertical: 8,
+    paddingVertical: 10,
+  },
+  playerName: {
+    color: '#ffffff', // Text color for dark theme
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  button: {
+    backgroundColor: '#444444', // Updated button color
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    margin: 5,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
   },
 });
