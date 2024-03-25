@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     right: 30,
     bottom: 30,
     padding: 10,
-    backgroundColor: '#1E88E5', // A shade of blue that stands out against the dark background
+    backgroundColor: '#1E88E5', 
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',

@@ -7,29 +7,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import GameScreen from './src/screens/GameScreen';
 import BottomTabNavigator from './src/components/BottomTabNavigator';
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
   return (
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator 
-          initialRouteName='GameScores'
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: '#121212',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        >
-          <Stack.Screen name='GameScores' component={GameScoresScreen} options={{ title: 'Game Scores' }} />
-          <Stack.Screen name="GameScreen" component={GameScreen} options={{ title: 'Game Details' }} />
-        </Stack.Navigator>
-        {/* <BottomTabNavigator /> */}
+        <BottomTabNavigator />
       </NavigationContainer>
     </>
   );
